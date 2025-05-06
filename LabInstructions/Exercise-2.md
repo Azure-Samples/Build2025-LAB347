@@ -45,7 +45,7 @@ In this exercise, you will use Webjobs with Azure OpenAI for generating a summar
 
 ### Add the Azure OpenAI based Webjob to WebApp 
 - Download the pre-created WebJob zip file from this Lab's repository to your local machine or VM: [Download openai-webjob.zip](../Exercise-2-WebjobWithAOAI/ai-webjob-AOAI/openai-webjob.zip)
-- 
+
 - Go to your web app's Overview blade in the Azure Portal, click the "WebJobs" icon on the left-hand menu, and then click the option to "Add" a new WebJob.
  ![Add a new WebJob](./images/LAB347-ex2-webjob.png)
 
