@@ -1,5 +1,5 @@
 # Exercise 4: Use an Azure AI Agent and the OpenAPI Specified Tool with an App Service App
-In this exercise, you will connect an Azure AI Agent from the [Azure AI Agent Service](https://learn.microsoft.com/azure/ai-services/agents/overview) to an App Service app. The app builds off of the Fashion Store Assistant app in the previous exercise, and shows you an alternative way of integrating AI functionality into your apps. The app already has basic shopping cart functionality and includes an API with an OpenAPI specification for shopping cart management. The Azure AI Agent is given the OpenAPI spec for the web app so that it can handle product recommendations, shopping assistance, shopping cart management, and more on your behalf via a chat interface. This sample builds off of the guidance documented by the AI Agent Service in [How to use Azure AI Agent Service with OpenAPI Specified Tools](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview).
+In this exercise, you will connect an Azure AI Agent from the [Azure AI Agent Service](https://learn.microsoft.com/azure/ai-services/agents/overview) to an App Service app. The app builds off of the Fashion Store Assistant app in the previous exercise, and shows you an alternative way of integrating AI functionality into your apps. The app for this exercise has basic shopping cart functionality and includes an API with an OpenAPI specification for shopping cart management. The Azure AI Agent is given an OpenAPI spec to APIs running in the web app so the Azure AI Agent can handle product recommendations, shopping assistance, shopping cart management, and more on your behalf via a chat interface. This sample builds off of the guidance documented by the AI Agent Service in [How to use Azure AI Agent Service with OpenAPI Specified Tools](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview).
 
 ## Architecture Overview
 - Interactive Blazor UI for fashion e-commerce
@@ -12,31 +12,36 @@ In this exercise, you will connect an Azure AI Agent from the [Azure AI Agent Se
 2. Azure AI Foundry Project (provided)
 
 ## DO NOT SKIP THIS STEP - Delete the .vscode directory from the Codespace
-For this exercise, you are using a different App Service. To ensure the deployment for this exercise points to the correct app, you must delete the `.vscode` directory that may have been generated during Exercise 1. This directory contains a config file that points all VS Code deployments from this workspace to that app. If this directory was not created for you, you can skip this step.
+For this exercise, you will be using a different web application and deploying it into App Service. To ensure the deployment for this exercise points to the correct application in Azure, you must delete the `.vscode` directory that may have been generated during Exercise 1. This directory contains a config file that points all VS Code deployments from this workspace to the first web application in the Lab. If this directory was not created, you can skip this step.
 
 Right-click on the `.vscode` code directory and select **Delete**.
 
 ![Delete .vscode directory](./images/Exercise-4-deletevscodedirectory.png)
 
-## Deploy webapp to Azure App Service
-- Right click on **dotnetfashionassistant.csproj** in the **Exercise-4-AIAgent** directory and select **Open In Integrated Terminal**.
+## Deploy the Fashion Assistant application to Azure App Service
+- Navigate to the **Exercise-4-AIAgent** folder in VSCode.
+- Right click on **dotnetfashionassistant.csproj** in the **Exercise-4-AIAgent\webapp** directory and select **Open In Integrated Terminal**.
 
     ![Context menu showing option to Open in integrated Terminal](./images/Exercise-4-openterminal.png)
 
 - To publish the web app, run the following command in the terminal.
+- Note:  **Building the application may take 30 seconds to one minute to complete.**
     
     ```bash
     dotnet publish -c Release -o ./bin/Publish
     ```
 
-- Right click on **bin--> Publish** folder and select **Deploy to Web App...** option.
+- Open the **bin** folder so you can see the **Publish** and Release folders created by running the _dotnet_ command.
+- Right click on **bin--> Publish** folder and select the **Deploy to Web App...** option.
+- Select the provided subscription and the pre-created webapp for Exercise 4 in the resulting dropdown menu. The name of this web app is in the format `fashionassistant<random-id>`.
+- Note: **It may take up to two minutes to publish the application.**
 
     ![Deploy to web app](./images/Exercise-4-deploy.png)
 
-- Select the provided subscription and the existing webapp for Exercise 4. The name of this web app is in the format `fashionassistant<random-id>`.
-  
 ### Run the webapp
-Once deployed, click on the **Browse** button on the portal by going to the App Service web app view to view the web app.
+Once deployed, goto the Azure Portal and click on the **fashionassistant** web application to get to the application's Overview page in the Portal. Then click the **Browse** button to open the website in the browser.
+
+Note: After the prior publishing step, please wait around 30 seconds for the new code changes to be picked up by the platform and take effect. If you do not seen the home page of the fashion assistant application, wait a few seconds in between periodic refreshes of the browser.
 
 Visit the Inventory and Cart pages in the app and feel free to add some items to your cart to see how the app works.
 
@@ -56,25 +61,28 @@ To simplify this lab, we've provided a script that will do the following actions
 
 To run the script, follow these steps:
 
-1. Open [create-agent.sh](../Exercise-4-AIAgent/create-agent.sh) and get familiar with the contents. You will see that we are using the [swagger.json](../Exercise-4-AIAgent/swagger.json) for the OpenAPI Specified tool for the agent. Feel free to get familiar with the swagger specification to understand what the API can do.
-2. Provide values for the three environment variables at the start of the script on lines 4-6. You can find your resource group name, App Service name, and Azure AI Project name in your resource group. For the Azure AI Project name, be sure to use the Azure AI **Project** resource, not the hub or the service resource. Note the values in the following screenshot are samples and your values will be different.
+1. Open [create-agent.sh](../Exercise-4-AIAgent/create-agent.sh) in the **Exercise--4-AIAgent** folder and familiarize yourself with the contents. You will see that we are using the [swagger.json](../Exercise-4-AIAgent/swagger.json) for the OpenAPI Specified tool for the agent. Feel free to get familiar with the swagger specification to understand what the API can do.
+2. Provide values for the three environment variables at the start of the script on lines 4-6.
+3. The three environment variables you need to provide values for are **RESOURCE_GROUP_NAME**, **APP_SERVICE_NAME**, and **AI_PROJECT_NAME**.
+4. In the Azure Portal, click into the Overview blade of the resource group created for this lab.  For ease of use, sort the resource view on the **Type** column. You can find your resource group name, App Service name, and Azure AI Project name by looking in the list of resources for the resource group. For the Azure AI Project name, be sure to use the Azure AI **Project** resource, not the hub or the service resource. Note the values in the following screenshot are samples and your values will be different.
 
     ![Resource group image showing where to find resource names](./images/Exercise-4-rg.png)
 
-3. Save your changes and go back to your terminal. Ensure you're using a Bash terminal. Be sure you are in the Exercise-4-AIAgent directory, which is where the `create-agent.sh` script is located.
-4. Run the following command to make the script executable.
+4. Save your changes to the `create-agent.sh` script and go back to your terminal window.
+5. Ensure you're using a Bash terminal. Be sure you are in the **Exercise-4-AIAgent** directory, which is where the `create-agent.sh` script is located.
+6. Run the following command to make the script executable.
 
     ```bash
     chmod +x create-agent.sh
     ```
 
-5. If you haven't done so already as part of a previous exercise, login to the Azure CLI. Run the following command and then follow the prompts in the terminal.
+7. **IMPORTANT**: If you haven't done so already as part of a previous exercise, login to the Azure CLI. This is necessary to obtain an authentication token from Azure so the shell script succeeds. Run the following command and then follow the prompts in the terminal.
 
     ```bash
     az login
     ```
 
-6. Now run the script.
+8. Now run the script.
 
     ```bash
     ./create-agent.sh
@@ -94,7 +102,7 @@ Can you generate an OpenAPI specification for the two controllers for inventory 
 
 ![Sample OpenAPI specification generation using GitHub Copilot for VS Code](./images/Exercise-4-openapispecgeneration.png)
 
-Once created, you can re-run the create-agent script to create a new agent with your new OpenAPI specification. Be sure to update the script on line 125 if your specification uses a different file name.
+Once created, you can re-run the create-agent script to create a new agent with your new OpenAPI specification. Be sure to update the _create-agent.sh_ script on line 125 if your specification uses a different file name.
 
 ## Use the app
 
