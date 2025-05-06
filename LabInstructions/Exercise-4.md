@@ -61,7 +61,7 @@ To simplify this lab, we've provided a script that will do the following actions
 
 To run the script, follow these steps:
 
-1. Open [create-agent.sh](../Exercise-4-AIAgent/create-agent.sh) in the **Exercise--4-AIAgent** folder and familiarize yourself with the contents. You will see that we are using the [swagger.json](../Exercise-4-AIAgent/swagger.json) for the OpenAPI Specified tool for the agent. Feel free to get familiar with the swagger specification to understand what the API can do.
+1. Open [create-agent.sh](../Exercise-4-AIAgent/create-agent.sh) in the **Exercise-4-AIAgent** folder and familiarize yourself with the contents. You will see that we are using the [swagger.json](../Exercise-4-AIAgent/swagger.json) for the OpenAPI Specified tool for the agent. Feel free to get familiar with the swagger specification to understand what the API can do.
 2. Provide values for the three environment variables at the start of the script on lines 4-6.
 3. The three environment variables you need to provide values for are **RESOURCE_GROUP_NAME**, **APP_SERVICE_NAME**, and **AI_PROJECT_NAME**.
 4. In the Azure Portal, click into the Overview blade of the resource group created for this lab.  For ease of use, sort the resource view on the **Type** column. You can find your resource group name, App Service name, and Azure AI Project name by looking in the list of resources for the resource group. For the Azure AI Project name, be sure to use the Azure AI **Project** resource, not the hub or the service resource. Note the values in the following screenshot are samples and your values will be different.
