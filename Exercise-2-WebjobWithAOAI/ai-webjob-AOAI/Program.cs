@@ -48,9 +48,10 @@ namespace ai_webjob
                     return;
                 }
 
-                var (summary, sentiment) = await GetSummaryAndSentimentFromAzureOpenAI(existingSummary, latestReview, $"Product ID: {productId}, Review ID: {reviewId}");
+                var reviewCount = GetReviewCount(connection, productId);
 
-                int reviewCount = GetReviewCount(connection, productId);
+                var (summary, sentiment) = await GetSummaryAndSentimentFromAzureOpenAI(existingSummary, latestReview, reviewCount, $"Product ID: {productId}, Review ID: {reviewId}");
+
                 double avgRating = CalculateAverageRating(connection, productId);
 
                 UpdateProductSummary(connection, productId, reviewCount, avgRating, summary, sentiment);
@@ -169,7 +170,7 @@ namespace ai_webjob
             return cmd.ExecuteScalar()?.ToString()?.Trim();
         }
 
-        static async Task<(string Summary, string Sentiment)> GetSummaryAndSentimentFromAzureOpenAI(string previousSummary, string latestReview, string context)
+        static async Task<(string Summary, string Sentiment)> GetSummaryAndSentimentFromAzureOpenAI(string previousSummary, string latestReview, int reviewCount, string context)
         {
             // Retrieve the endpoint and deployment name from configuration
             var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? string.Empty;
@@ -208,17 +209,13 @@ namespace ai_webjob
 
             var messages = new ChatMessage[]
             {
-                       ChatMessage.CreateSystemMessage("You are an assistant that summarizes user reviews and analyzes sentiment."),
+                       ChatMessage.CreateSystemMessage("You are an assistant that summarizes user reviews and analyzes sentiment. When a new review is received, integrate it into the existing summary by giving it a weight proportional to the number of past reviews. Ensure the updated summary is concise and within 80 words"),
                        ChatMessage.CreateUserMessage(
                            $"""
-                           Below are individual product reviews, separated by [].
+                           Here is the existing summary based on {reviewCount-1} reviews: [{previousSummary}]. Please update it with the following new review, giving it weight of 1/{reviewCount}: [{latestReview}].
                            Please respond in the following format:
                            Summary: <summary>
                            Sentiment: <positive/mixed/negative>
-
-                           Context: {context}
-                           [{latestReview}]
-                           Previous Summary: {previousSummary}
                            """
                        )
             };

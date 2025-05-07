@@ -3,9 +3,9 @@ In this exercise, you will use Webjobs with Azure OpenAI for generating a summar
 
 **App Setup**
 - This App uses an Azure Storage Queue leveraging the [Web-Queue-Worker](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/web-queue-worker) architecture to generate an AI summary for new reviews using Webjobs as a background process.
-- Go to **#region publishreviewtoqueue** in **Exercise-1-IntegrateAOAI\devShopDNC\Controllers\ReviewController.cs** and view how a new review id is published to queue.
-- Go to **#region receivemessagefromqueue** in **Exercise-2-WebjobWithAOAI\ai-webjob-AOAI\Program.cs** and view how the Webjob will pop the item from queue.
-- Go to **#region openaichatclient** in **Exercise-2-WebjobWithAOAI\ai-webjob-AOAI\Program.cs** and view how Azure OpenAI SDK is used in the webjob to generate an updated AI summary for the product based on prior summaries as well as a newly submitted review.
+- Go to [**#region publishreviewtoqueue**](../Exercise-2-WebjobWithAOAI/devShopDNC/Controllers/ReviewController.cs#L85) in **Exercise-2-WebjobWithAOAI/devShopDNC/Controllers/ReviewController.cs** and view how a new review id is published to queue.
+- Go to [**#region receivemessagefromqueue**](../Exercise-2-WebjobWithAOAI/ai-webjob-AOAI/Program.cs#L114) in **Exercise-2-WebjobWithAOAI\ai-webjob-AOAI\Program.cs** and view how the Webjob will pop the item from queue.
+- Go to [**#region openaichatclient**](../Exercise-2-WebjobWithAOAI/ai-webjob-AOAI/Program.cs#L207) in **Exercise-2-WebjobWithAOAI\ai-webjob-AOAI\Program.cs** and view how Azure OpenAI SDK is used in the webjob to generate an updated AI summary for the product based on prior summaries as well as a newly submitted review.
 
 **Azure Sign In**
 - If you have already signed in to Azure, you can skip this step and move to the "Deploy webapp..." section.
@@ -13,7 +13,7 @@ In this exercise, you will use Webjobs with Azure OpenAI for generating a summar
 - Review the App Service Plan and the Azure OpenAI service pre-provisioned in your subscription
 
 ### Deploy the webapp to Azure App Service
-- **You can skip this step if you have already deployed the web application from Exercise 1**. Refer to the [Exercise 1 Lab Instructions](../Exercise-1.md#deploy-webapp-to-azure-app-service) for detailed steps on deploying the web app.
+- **You can skip this step if you have already deployed the web application from Exercise 1**. Refer to the [Exercise 1 Lab Instructions](./Exercise-1.md#deploy-webapp-to-azure-app-service) for detailed steps on deploying the web app.
   
 ### Run the webapp
 - Once the web app is deployed, go to the Overview blade in the Azure Portal for the web application and click on the Browse button to view the web app in the browser.
@@ -35,7 +35,8 @@ In this exercise, you will use Webjobs with Azure OpenAI for generating a summar
 - **[NEW]** For the Storage account used in the lab you will see the web app also has a "Role Assignment" set to "Storage Queue Data Contributor". This is needed for the web application to publish review information to an Azure Storage Queue, as well as for the associated WebJob to pop review information from the Azure Storage Queue.
 
 ### Connect to Azure Open AI
-- **You can skip this step if you have already connected the web app from Exercise 1.** Refer to the [Exercise 1 Lab Instructions](../Exercise-1.md#connect-to-azure-open-ai) for detailed steps.
+- **You can skip this step if you have already connected the web app from Exercise 1.** Refer to the [Exercise 1 Lab Instructions](./Exercise-1.md#connect-to-azure-open-ai-this-step-is-already-done-for-you-in-this-lab
+) for detailed steps.
 
 ### Update Storage Queue details as App Settings (THIS STEP IS ALREADY DONE FOR YOU IN THIS LAB)
 - Add STORAGE_ACCOUNT_NAME and QUEUE_NAME as this is required for choosing the appropriate Azure Storage Queue by WebApp and Webjob for communication.

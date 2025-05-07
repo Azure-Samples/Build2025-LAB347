@@ -10,15 +10,15 @@ In this exercise, you will be able to create chat assistant for the retail produ
 - View the project code in the Explorer blade inside VS Code Online.  The project code is in the **Exercise-1-IntegrateAOAI folder**.
 
 **Azure OpenAI SDK**
-- Go to the **#region openaichat** under **Exercise-1-IntegrateAOAI\devShopDNC\Controllers\ProductDetailsController.cs** and view how Azure OpenAI SDK is used to initialize a chat client using Managed Identity to connect to Azure OpenAI.
+- Go to the [**#region openaichat**](../Exercise-1-IntegrateAOAI/devShopDNC/Controllers/ProductDetailsController.cs#L91) under **Exercise-1-IntegrateAOAI\devShopDNC\Controllers\ProductDetailsController.cs** and view how Azure OpenAI SDK is used to initialize a chat client using Managed Identity to connect to Azure OpenAI.
 
 **Prompt context**
 - You can set the prompt context with the product details so OpenAI provides valid responses in relation to the product being queried on.
-- Go to the **#region promptcontext** under **Exercise-1-IntegrateAOAI\devShopDNC\Controllers\ProductDetailsController.cs** and view the prompt context setting.
+- Go to the [**#region promptcontext**](../Exercise-1-IntegrateAOAI/devShopDNC/Controllers/ProductDetailsController.cs#L116) under **Exercise-1-IntegrateAOAI\devShopDNC\Controllers\ProductDetailsController.cs** and view the prompt context setting.
 
 **Prompt response style**
 - Using the SystemChatMessage class, Azure OpenAI can be instructed to respond in a specific style like Shakespearean, pirate, etc...
-- Go to the **#region systemmessages** under **Exercise-1-IntegrateAOAI\devShopDNC\Controllers\ProductDetailsController.cs** , comment the current systemmessage and uncomment the line for new systemmessage that has the Shakespearean style response message embedded.
+- Go to the [**#region systemmessages**](../Exercise-1-IntegrateAOAI/devShopDNC/Controllers/ProductDetailsController.cs#L137) under **Exercise-1-IntegrateAOAI\devShopDNC\Controllers\ProductDetailsController.cs** , comment the current systemmessage and uncomment the line for new systemmessage that has the Shakespearean style response message embedded.
   
 **Azure Sign In**
 - Log into the provided Azure subscription in your environment using Azure CLI and on the Azure Portal using your credentials.

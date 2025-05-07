@@ -3,10 +3,10 @@ In this exercise, you will use Webjobs with a local SLM that is running in a Sid
 
 **App Setup**
 - This App uses an Azure Storage Queue leveraging the [Web-Queue-Worker](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/web-queue-worker) architecture to generate AI summaries for new reviews using Webjobs as a background process.
-- Go to **#region publishreviewtoqueue** in **Exercise-1-IntegrateAOAI\devShopDNC\Controllers\ReviewController.cs** and view how a new review id is published to queue.
-- Go to **#region localslmendpoint** in **Exercise-3-WebjobWithLocalSLM\ai-webjob-LocalSLM\Program.cs** and see how the local SLM endpoint is a localhost url.
-- Go to **#region localslmreceivemessagefromqueue** in **Exercise-3-WebjobWithLocalSLM\ai-webjob-LocalSLM\Program.cs** and view how the Webjob will pop a review item from the queue.
-- Go to **#region loclslmopenaichatclient** in **Exercise-3-WebjobWithLocalSLM\ai-webjob-LocalSLM\Program.cs** and view how the Azure OpenAI chat client is used in the WebJob to generate an updated AI summary for the product based on prior summaries as well as a newly submitted review.  Even though the Lab uses the Azure OpenAI SDK, it is calling into the locally deployed Phi-4 SLM.
+- Go to [**#region publishreviewtoqueue**](../Exercise-3-WebjobWithLocalSLM/devShopDNC/Controllers/ReviewController.cs#L85) in **Exercise-3-WebjobWithLocalSLM\devShopDNC\Controllers\ReviewController.cs** and view how a new review id is published to queue.
+- Go to [**#region localslmendpoint**](../Exercise-3-WebjobWithLocalSLM/ai-webjob-LocalSLM/Program.cs#L177) in **Exercise-3-WebjobWithLocalSLM\ai-webjob-LocalSLM\Program.cs** and see how the local SLM endpoint is a localhost url.
+- Go to [**#region localslmreceivemessagefromqueue**](../Exercise-3-WebjobWithLocalSLM/ai-webjob-LocalSLM/Program.cs#L114) in **Exercise-3-WebjobWithLocalSLM\ai-webjob-LocalSLM\Program.cs** and view how the Webjob will pop a review item from the queue.
+- Go to [**#region loclslmopenaichatclient**](../Exercise-3-WebjobWithLocalSLM/ai-webjob-LocalSLM/Program.cs#L188) in **Exercise-3-WebjobWithLocalSLM\ai-webjob-LocalSLM\Program.cs** and view how the Azure OpenAI chat client is used in the WebJob to generate an updated AI summary for the product based on prior summaries as well as a newly submitted review.  Even though the Lab uses the Azure OpenAI SDK, it is calling into the locally deployed Phi-4 SLM.
 
 **Azure Sign In**
 - If you have already signed in to Azure, you can skip this step and move to the "Deploy webapp..." section.
@@ -14,7 +14,7 @@ In this exercise, you will use Webjobs with a local SLM that is running in a Sid
 - Review the App Service Plan and the Azure OpenAI service pre-provisioned in your subscription.
 
 ### Deploy webapp to Azure App Service
-- **You can skip this step if you have already deployed the web application from Exercise 1.** Refer to the [Exercise 1 Lab Instructions](../Exercise-1.md#deploy-webapp-to-azure-app-service) for detailed steps on deploying the app.
+- **You can skip this step if you have already deployed the web application from Exercise 1.** Refer to the [Exercise 1 Lab Instructions](./Exercise-1.md#deploy-webapp-to-azure-app-service) for detailed steps on deploying the app.
   
 ### Run the webapp
 - Once the web app is deployed, go to the Overview blade in the Azure Portal for the web application and click on the Browse button to view the web app in the browser.
