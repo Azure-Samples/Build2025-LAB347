@@ -2,8 +2,8 @@
 In this exercise, you will be able to create chat assistant for the retail products to help your customers to learn more about the products. To create the product assistant, the user prompts are sent to the Azure Open AI to complete the chat based on the prompt and the product detail.
 
 **Repo setup**
-- Clone the repository from the main branch or fork it if you want to keep track of your changes if you have a GitHub account.
-- Create your Codespaces by clicking on the Code button.  Select the "Codespaces" tab and click the button that says "Create codepsace on main".  Your new Codespace will be opened in a new browser tab.  Note that will take two to three minutes for the Codespaces container to startup as well as finish installing a few VSCode extensions in the Codespaces container.
+- Create a fork of the repository.
+- In your forked repository, create your Codespaces by clicking on the Code button. Select the "Codespaces" tab and click the button that says "Create codepsace on main".  Your new Codespace will be opened in a new browser tab. Note that will take two to three minutes for the Codespaces container to startup as well as finish installing a few VSCode extensions in the Codespaces container.
 
  ![Menu option showing option to create new Codespace](./images/LAB347-ex1-codespaces.png)
 
