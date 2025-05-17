@@ -1,4 +1,8 @@
-# Welcome to LAB347
+<p align="center">
+<img src="img/banner.jpg" alt="decorative banner" width="1200"/>
+</p>
+
+# Welcome to LAB347 - Add AI experiences to existing .NET apps using Sidecar in App Service
 
 In this lab, you’ll work through four hands-on exercises designed to build your skills with Azure and intelligent app development. Below is an overview of each exercise:
 
@@ -13,3 +17,8 @@ In this lab, you’ll work through four hands-on exercises designed to build you
 To get started, fork this repository to your GitHub account. Detailed instructions for each exercise are available in the `LabInstructions` folder.
 
 Happy learning!
+
+| Resources          | Links                             | Description        |
+|:-------------------|:----------------------------------|:-------------------|
+| Build session page | https://build.microsoft.com/sessions/LAB347 | Event session page with downloadable recording, slides, resources, and speaker bio |
+|Microsoft Learn|https://aka.ms/build25/plan/ADAI_DevStartPlan|Official Collection or Plan with skilling resources to learn at your own pace|
