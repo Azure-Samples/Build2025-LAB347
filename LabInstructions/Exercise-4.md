@@ -1,6 +1,9 @@
 # Exercise 4: Use an Azure AI Agent and the OpenAPI Specified Tool with an App Service App
 In this exercise, you will connect an Azure AI Agent from the [Azure AI Agent Service](https://learn.microsoft.com/azure/ai-services/agents/overview) to an App Service app. The app builds off of the Fashion Store Assistant app in the previous exercise, and shows you an alternative way of integrating AI functionality into your apps. The app for this exercise has basic shopping cart functionality and includes an API with an OpenAPI specification for shopping cart management. The Azure AI Agent is given an OpenAPI spec to APIs running in the web app so the Azure AI Agent can handle product recommendations, shopping assistance, shopping cart management, and more on your behalf via a chat interface. This sample builds off of the guidance documented by the AI Agent Service in [How to use Azure AI Agent Service with OpenAPI Specified Tools](https://learn.microsoft.com/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview).
 
+## NOTE
+The below guidance can and should only be followed if you're working on this lab from a "Skillable VM" (a pre-provisioned VM that was provided courtesy of Skillable for Build 2025, which had all of the required components pre-installed and pre-deployed). If you don't have access to one of those specific VMs, you can still complete this lab on your own machine in your own Azure subscription by following the full tutorial [Invoke an App Service web app from Azure AI Foundry Agent Service](https://learn.microsoft.com/azure/app-service/invoke-openapi-web-app-from-azure-ai-agent-service) in the App Service Learn Docs.
+
 ## Architecture Overview
 - Interactive Blazor UI for fashion e-commerce
 - Integration with Azure AI Agent Service for intelligent shopping assistance
